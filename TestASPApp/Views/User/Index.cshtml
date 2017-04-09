@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TestASPApp.Models.User>
+
+<div id="modalDialog" class="modal" role="dialog">
+	<div class="modal-dialog">
+		<div id="modalContainer" class="modal-content">
+		</div>
+	</div>
+</div>
+
+<div>
+	<button id="createUser" class="modal-button" data-url='@Url.Action("Create")'>Create user</button>
+</div>
+
+
+<script>
+	document.addEventListener("DOMContentLoaded", getAndRenderUsersTable);
+
+	function getAndRenderUsersTable() {
+		$.get('@Url.Action("List")', function (data) {
+			$("#table-wrapper").html(data);
+			addModalWindowEventListener();
+		});
+	}
+
+	function addModalWindowEventListener() {
+		$('.modal-button').click(function () {
+			var url = $(this).data('url');
+			$.get(url, function (data) {
+				$('#modalContainer').html(data);
+				$('#modalDialog').modal({ keyboard: true, show: true });
+				$.validator.unobtrusive.parse("#validatedFormId");
+			});
+		});
+	};
+
+
+</script>
+
+<div id="table-wrapper"></div>

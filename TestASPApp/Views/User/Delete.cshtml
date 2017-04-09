@@ -1,0 +1,26 @@
+﻿@model TestASPApp.Models.User
+<div class="modal-body">
+
+	@using (Ajax.BeginForm("Delete", "User",
+								new AjaxOptions() { HttpMethod = "POST", OnSuccess = "$('#modalDialog').modal('hide'); getAndRenderUsersTable()" },
+								new { id = "validatedFormId" }))
+	{
+		@Html.AntiForgeryToken()
+		<div class="form-horizontal">
+			@Html.HiddenFor(model => model.Id)
+			@Html.HiddenFor(model => model.Name)
+			@Html.HiddenFor(model => model.SecondName)
+			@Html.HiddenFor(model => model.PhoneNumber)
+			@Html.HiddenFor(model => model.Email)
+
+			<h4 class="text-center">Are you shure you want to delete this user?</h4>
+			<br>
+			<div class="form-group">
+				<div class="col-md-offset-7 col-md-10">
+					<input type="submit" value="Delete" class="btn btn-primary" />
+					<input type="reset" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+				</div>
+			</div>
+		</div>
+	}
+</div>
