@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TestASPApp.Models.User>
+﻿@model IEnumerable<TestASPApp.ModelsDTO.UserDTO>
 
 <div id="modalDialog" class="modal" role="dialog">
 	<div class="modal-dialog">
@@ -6,34 +6,33 @@
 		</div>
 	</div>
 </div>
-
+<br>
 <div>
-	<button id="createUser" class="modal-button" data-url='@Url.Action("Create")'>Create user</button>
+	<button id="createUser" class="btn btn-default modal-button" data-url='@Url.Action("Create")'>Create user</button>
 </div>
-
+<br>
 
 <script>
-	document.addEventListener("DOMContentLoaded", getAndRenderUsersTable);
+	$(document).ready(getAndRenderUsersTable);
 
 	function getAndRenderUsersTable() {
 		$.get('@Url.Action("List")', function (data) {
 			$("#table-wrapper").html(data);
-			addModalWindowEventListener();
+			addModalWindowsEventListener();
 		});
 	}
 
-	function addModalWindowEventListener() {
+	function addModalWindowsEventListener() {
 		$('.modal-button').click(function () {
 			var url = $(this).data('url');
 			$.get(url, function (data) {
 				$('#modalContainer').html(data);
-				$('#modalDialog').modal({ keyboard: true, show: true });
+				$('#modalDialog').modal({ keyboard: true, show: true});
+				$('#modalDialog').on('hidden.bs.modal', getAndRenderUsersTable);
 				$.validator.unobtrusive.parse("#validatedFormId");
 			});
 		});
 	};
-
-
 </script>
 
 <div id="table-wrapper"></div>

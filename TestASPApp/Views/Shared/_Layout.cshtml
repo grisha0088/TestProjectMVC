@@ -4,7 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test ASP.NET Application by Grigoriy Dementiev</title>
-    @Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@Styles.Render("~/Content/css")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -15,8 +17,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 	                <li>@Html.ActionLink("List of user", "Index", "User")</li>
-					<li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -28,7 +28,5 @@
 		<p>Test ASP.NET Application by Grigoriy Dementiev</p>
 	</footer>
 </div>
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>

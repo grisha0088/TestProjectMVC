@@ -1,15 +1,15 @@
-﻿@model TestASPApp.Models.User
+﻿@model TestASPApp.ModelsDTO.UserDTO
 <div class="modal-body">
 
 	@using (Ajax.BeginForm("Delete", "User",
-								new AjaxOptions() { HttpMethod = "POST", OnSuccess = "$('#modalDialog').modal('hide'); getAndRenderUsersTable()" },
+								new AjaxOptions() { HttpMethod = "POST", OnSuccess = "$('#modalDialog').modal('hide')" },
 								new { id = "validatedFormId" }))
 	{
 		@Html.AntiForgeryToken()
 		<div class="form-horizontal">
 			@Html.HiddenFor(model => model.Id)
-			@Html.HiddenFor(model => model.Name)
-			@Html.HiddenFor(model => model.SecondName)
+			@Html.HiddenFor(model => model.FirstName)
+			@Html.HiddenFor(model => model.LastName)
 			@Html.HiddenFor(model => model.PhoneNumber)
 			@Html.HiddenFor(model => model.Email)
 

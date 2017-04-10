@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TestASPApp.Models.User>
+﻿@model IEnumerable<TestASPApp.ModelsDTO.UserDTO>
 
 @{
 	Layout = null;
@@ -7,10 +7,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SecondName)
+            @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
@@ -24,10 +24,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SecondName)
+            @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -36,10 +36,9 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
 	    <td>
-			<button class="modal-button" data-url='@Url.Action("Edit", new {id = item.Id})'>Edit</button>
-			<button class="modal-button" data-url='@Url.Action("Delete", new {id = item.Id})'>Delete</button>
+			<button class="btn btn-default modal-button" data-url='@Url.Action("Edit", new {id = item.Id})'>Edit</button>
+			<button class="btn btn-default modal-button" data-url='@Url.Action("Delete", new {id = item.Id})'>Delete</button>
 	    </td>
     </tr>
 }
-
 </table>

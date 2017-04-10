@@ -7,17 +7,13 @@ namespace TestASPApp.Models
 		public int Id { get; set; }
 
 		[Required]
-		public string Name { get; set; }
+		public string FirstName { get; set; }
 
 		[Required]
-		public string SecondName { get; set; }
+		public string LastName { get; set; }
 
-		[DataType(DataType.PhoneNumber, ErrorMessage = "Not a valid Phone number")]
-		[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
 		public string PhoneNumber { get; set; }
 
-
-		[DataType(DataType.EmailAddress, ErrorMessage = "Not a valid Email address")]
 		public string Email { get; set; }
 	}
 }

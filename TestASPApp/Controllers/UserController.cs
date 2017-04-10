@@ -2,15 +2,16 @@
 using System.Net.Http;
 using System.Web.Mvc;
 using TestASPApp.Models;
+using TestASPApp.ModelsDTO;
 using TestASPApp.Repositories;
 
 namespace TestASPApp.Controllers
 {
 	public class UserController : Controller
 	{
-		private readonly IRepository<User, int> _repository;
+		private readonly IRepository<UserDTO, int> _repository;
 
-		public UserController(IRepository<User, int> repo)
+		public UserController(IRepository<UserDTO, int> repo)
 		{
 			_repository = repo;
 		}
@@ -26,20 +27,20 @@ namespace TestASPApp.Controllers
 		public ActionResult List()
 		{
 			var users = _repository.Get();
-			return PartialView(users);
+			return PartialView("_List", users);
 		}
 
 		// GET: User/Create
 		public ActionResult Create()
 		{
-			var user = new User();
-			return PartialView(user);
+			var user = new UserDTO();
+			return PartialView("_Create", user);
 		}
 
 		// POST: User/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public HttpResponseMessage Create(User user)
+		public HttpResponseMessage Create(UserDTO user)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -53,13 +54,13 @@ namespace TestASPApp.Controllers
 		public ActionResult Edit(int id)
 		{
 			var user = _repository.Get(id);
-			return PartialView(user);
+			return PartialView("_Edit", user);
 		}
 
 		// POST: User/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public HttpResponseMessage Edit(User user)
+		public HttpResponseMessage Edit(UserDTO user)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -69,17 +70,17 @@ namespace TestASPApp.Controllers
 			return new HttpResponseMessage(HttpStatusCode.OK);
 		}
 
-		// GET: User/Delete/5
+		// GET: User/Delete/5`
 		public ActionResult Delete(int id)
 		{
 			var user = _repository.Get(id);
-			return PartialView(user);
+			return PartialView("_Delete", user);
 		}
 
 		// POST: User/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public void Delete(User user)
+		public void Delete(UserDTO user)
 		{
 			if (!ModelState.IsValid)
 			{
